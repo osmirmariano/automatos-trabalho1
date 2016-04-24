@@ -30,17 +30,19 @@ int main(){
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t INSERÇÃO DE ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
-                cout << " INFORME UM ALFABETO: ";
+                cout << "ATENÇÃO! Só é aceito alfabeto como entrada, os de acordo com a \nteoria de conjuntos. Exemplo: {1,2,3}, {a,b,c}, {1,a,2,b}" << endl;
+                cout << "---------------------------------------------" << endl ;
+                cout << "INFORME UM ALFABETO: ";
                 cin >> alfabeto;
                 tamanho = alfabeto.length();
-                cout << "TAMANHO: " << tamanho << endl;
-                
+
                 if(alfabeto[0] != '{' || alfabeto[tamanho-1] != '}'){
-                    cout << endl << "\t ALFABETO INVÁLIDO." << endl;
+                    cout << endl << "\t ALFABETO INFORMADO NÃO ACEITO." << endl;
                     cout << "POR FAVOR, INFORME UM VÁLIDO DE ACORDO COM A TEORIA DE CONJUNTOS." << endl;
                 }
                 else{   
                     alfabet->verifAlfabeto(alfabeto, tamanho);
+                    alfabet->mostarAlfabeto(alfabeto);
                 }
                 break;
             case 2:
