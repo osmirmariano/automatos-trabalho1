@@ -11,7 +11,7 @@ int main(){
     Alfabeto *alfabet = new Alfabeto();
     do{
         cout << endl << "---------------------------------------------" << endl;
-        cout << "\t MENU DE OPÇÕES" << endl;
+        cout << "\t MENU DE OPCOES" << endl;
         cout << "---------------------------------------------" << endl;
         cout << " 1 -- INSERIR ALFABETO" << endl;
         cout << " 2 -- UNIR ALFABETOS" << endl;
@@ -21,28 +21,26 @@ int main(){
         cout << " 6 -- LISTAR ALFABETOS" << endl;
         cout << " 0 -- SAIR " << endl;
         cout << "---------------------------------------------" << endl;
-        cout << "OPÇÃO: ";
+        cout << "OPCAO: ";
         cin >> op;
         cout << "---------------------------------------------" << endl << endl;
 
         switch(op){
             case 1:
                 cout << endl << "---------------------------------------------" << endl;
-                cout << "\t INSERÇÃO DE ALFABETOS" << endl;
+                cout << "\t INSERCAO DE ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
-                cout << "ATENÇÃO! Só é aceito alfabeto como entrada, os de acordo com a \nteoria de conjuntos. Exemplo: {1,2,3}, {a,b,c}, {1,a,2,b}" << endl;
-                cout << "---------------------------------------------" << endl ;
                 cout << "INFORME UM ALFABETO: ";
                 cin >> alfabeto;
                 tamanho = alfabeto.length();
 
                 if(alfabeto[0] != '{' || alfabeto[tamanho-1] != '}'){
-                    cout << endl << "\t ALFABETO INFORMADO NÃO ACEITO." << endl;
-                    cout << "POR FAVOR, INFORME UM VÁLIDO DE ACORDO COM A TEORIA DE CONJUNTOS." << endl;
+                    cout << endl << "\t ALFABETO INFORMADO NAO ACEITO." << endl;
+                    cout << "POR FAVOR, INFORME UM VALIDO DE ACORDO COM A TEORIA DE CONJUNTOS." << endl;
                 }
-                else{   
+                else{
                     alfabet->verifAlfabeto(alfabeto, tamanho);
-                    alfabet->mostarAlfabeto(alfabeto);
+                    alfabet->verifAlfabetoRepetido(alfabeto);
                 }
                 break;
             case 2:
@@ -69,6 +67,7 @@ int main(){
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t LISTA DE TODOS OS ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
+                alfabet->imprimeAlfabetos();
                 break;
             case 0:
                 cout << "PROGRAMA ENCERRADO COM SUCESSO!" << endl;
@@ -80,4 +79,3 @@ int main(){
     }while(op != 0);
     return 0;
 }
-
