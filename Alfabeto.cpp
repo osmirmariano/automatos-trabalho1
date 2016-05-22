@@ -6,19 +6,23 @@
 
 using namespace std;
 
-
 class Alfabeto{
 	public:
 		int cont, flag, recebe, contando;
 		vector<string> alfabetos;
         vector<char> alfa;
+        string unirAlfa;
+        vector<char> alfaUnir;
 
     public:
 		Alfabeto(){
 			cont = 0;
 			flag = 1;
-			alfa = this->alfa;
-			contando=0;
+            contando=0;
+            alfabetos = this->alfabetos;
+            alfa = this->alfa;
+            unirAlfa = this->unirAlfa;
+            alfaUnir = this->alfaUnir;
 		};
 
 		~Alfabeto();
@@ -36,13 +40,18 @@ class Alfabeto{
 		};
 
 		/*-----------------------------FUNÇÃO GUARDA ALFABETO------------------------------*/
-		void guardaAlfabeto(string alfabeto){
+		void guardaAlfabeto(string alfabeto, int tamanho){
             alfabetos.push_back(alfabeto);
             contando++;
-		};
+            for(int x = 0; x < tamanho; x++){
+			    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
+                    unirAlfa += alfabeto[x];
+			    }
+			}
+        };
 
 		/*----------------------FUNÇÃO VERIFICA ALFABETO REPETIDOS-------------------------*/
-		void verifAlfabetoRepetido (string alfabeto){ // verifica repetições de elementos no alfabeto
+		void verifAlfabetoRepetido (string alfabeto, int tamanho){ // verifica repetições de elementos no alfabeto
 			for(int x = 0; x < cont; x++){
 			    for(int y = x+1; y < cont; y++){
 				   	if(alfa[x] == alfa[y]){
@@ -58,7 +67,7 @@ class Alfabeto{
 			else{
 				cout << endl << "\tALFABETO INFORMADO ACEITO - ";
 		        cout << "" << alfabeto << endl;
-		        guardaAlfabeto(alfabeto);
+		        guardaAlfabeto(alfabeto,tamanho);
 			}
 			recebe = 0;
 			destrutor();
@@ -76,5 +85,36 @@ class Alfabeto{
 		void destrutor(){
             alfa.clear();
 		}
+
+		/*---------------------------FUNÇÃO UNIR ALFABETO-----------------------------*/
+        void unirAlfabeto(string alfabeto){
+        	flag = 0;
+            int tam = unirAlfa.length();
+            int cont = 1;
+            cout << "{";
+            for(int x = 0; x < tam; x++){
+            	for(int y = x+1; y < tam; y++){
+            		if(unirAlfa[x] == unirAlfa[y]){
+            			while(y <= tam){
+            				unirAlfa[y] = unirAlfa[y+1];
+            				y++;
+            			}
+            			cont++;
+            		}
+
+            	}
+            	int virgula = tam-cont;
+            	cout << unirAlfa[x];
+            	if(flag < virgula){
+            		cout << ",";
+            		flag++;
+            	}
+            }
+            cout << "}";
+        }
+
+        void prefixo(string alfabeto, string inseriAlfa){
+        	
+        }
 
 };

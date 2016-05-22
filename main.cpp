@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     int op, recebe, tamanho = 0, verifica;
-    string alfabeto;
+    string alfabeto, inseriAlfa;
     char *alfa;
 
     Alfabeto *alfabet = new Alfabeto();
@@ -14,7 +14,7 @@ int main(){
         cout << "\t MENU DE OPCOES" << endl;
         cout << "---------------------------------------------" << endl;
         cout << " 1 -- INSERIR ALFABETO" << endl;
-        cout << " 2 -- UNIR ALFABETOS" << endl;
+        cout << " 2 -- UNIAO DOS ALFABETOS" << endl;
         cout << " 3 -- PREFIXOS " << endl;
         cout << " 4 -- SUFIXOS" << endl;
         cout << " 5 -- SUBPALAVRAS" << endl;
@@ -40,18 +40,21 @@ int main(){
                 }
                 else{
                     alfabet->verifAlfabeto(alfabeto, tamanho);
-                    alfabet->verifAlfabetoRepetido(alfabeto);
+                    alfabet->verifAlfabetoRepetido(alfabeto, tamanho);
                 }
                 break;
             case 2:
                 cout << endl << "---------------------------------------------" << endl;
-                cout << "\t UNIÃO DOS ALFABETOS" << endl;
+                cout << "\t UNIAO DOS ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
+                alfabet->unirAlfabeto(alfabeto);
                 break;
             case 3:
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t PREFIXOS" << endl;
                 cout << "---------------------------------------------" << endl;
+                cout << "INFORME UM ALFABETO: ";
+                cin << inseriAlfa;
                 break;
             case 4:
                 cout << endl << "---------------------------------------------" << endl;
