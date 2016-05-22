@@ -127,10 +127,14 @@ class Alfabeto{
         			}
         		}
         	}
-        	if(pertence > 1)
-        		cout << "\tO ALFABETO '" << inseriAlfa << "' PERTENCE AO ALFABETO " << endl;
-        	else
-        		cout << "\tNÃO PERTENCE AO ALFABETO" << endl;
+        	if(pertence > 1){
+        		cout << "\tA PALAVRA '" << inseriAlfa << "' PERTENCE AO ALFABETO ";
+        		unirAlfabeto(alfabeto);
+        	}
+        	else{
+        		cout << "\tA PALAVRA '" << inseriAlfa << "' NÃO PERTENCE AO ALFABETO ";
+        		unirAlfabeto(alfabeto);
+        	}
         };
 
         /*---------------------------------FUNÇÃO PREFIXO---------------------------------------*/

@@ -11,14 +11,12 @@ int main(){
     Alfabeto *alfabet = new Alfabeto();
     do{
         cout << endl << "---------------------------------------------" << endl;
-        cout << "\t MENU DE OPCOES" << endl;
+        cout << "\t PRINCIPAL MENU" << endl;
         cout << "---------------------------------------------" << endl;
         cout << " 1 -- INSERIR ALFABETO" << endl;
         cout << " 2 -- UNIAO DOS ALFABETOS" << endl;
-        cout << " 3 -- PREFIXOS " << endl;
-        cout << " 4 -- SUFIXOS" << endl;
-        cout << " 5 -- SUBPALAVRAS" << endl;
-        cout << " 6 -- LISTAR ALFABETOS" << endl;
+        cout << " 3 -- PREFIXOS, SUFIXOS E SUBPALAVRAS " << endl;
+        cout << " 4 -- LISTAR ALFABETOS" << endl;
         cout << " 0 -- SAIR " << endl;
         cout << "---------------------------------------------" << endl;
         cout << "OPCAO: ";
@@ -51,17 +49,19 @@ int main(){
                 break;
             case 3:
                 cout << endl << "---------------------------------------------" << endl;
-                cout << "\t PREFIXOS" << endl;
+                cout << "\t PREFIXOS, SUFIXOS E SUBPALAVRAS" << endl;
                 cout << "---------------------------------------------" << endl;
                 cout << "INFORME UM ALFABETO: ";
                 cin >> inseriAlfa;
                 do{
                     cout << endl << "   ---------------------------------------------" << endl;
-                    cout << " \t   SUBMENU" << endl;
+                    cout << " \t   MENU SECUNDÁRIO" << endl;
                     cout << "   ---------------------------------------------" << endl;
                     cout << "   1 -- VERIFICAR SE PERTENCE AO ALFABETO" << endl;
                     cout << "   2 -- VISUALIZAR PREFIXOS" << endl;
-                    cout << "   0 -- VALTAR PARA O MENU" << endl;
+                    cout << "   3 -- VISUALIZAR SUFIXOS" << endl;
+                    cout << "   4 -- VISUALIZAR SUBPALAVRAS" << endl;
+                    cout << "   0 -- VALTAR PARA O MENU PRINCIPAL" << endl;
                     cout << "   ---------------------------------------------" << endl;
                     cout << "   OPCAO: ";
                     cin >> op2;
@@ -72,33 +72,32 @@ int main(){
                             cout << "\t   VERIFICAÇÃO" << endl;
                             cout << "   ---------------------------------------------" << endl;
                             alfabet->verificaPercAlfa(alfabeto, inseriAlfa);
-                            cout << "   ---------------------------------------------" << endl << endl;
-                            alfabet->prefixo(alfabeto, inseriAlfa);
+                            cout << endl << "   ---------------------------------------------" << endl << endl;
                             break;
                         case 2:
                             cout << endl << "---------------------------------------------" << endl;
                             cout << "\t PREFIXOS" << endl;
                             cout << "---------------------------------------------" << endl;
                             break;
+                        case 3:
+                            cout << endl << "---------------------------------------------" << endl;
+                            cout << "\t SUFIXOS" << endl;
+                            cout << "---------------------------------------------" << endl;
+                            break;
+                        case 4:
+                            cout << endl << "---------------------------------------------" << endl;
+                            cout << "\t SUBPALAVRAS" << endl;
+                            cout << "---------------------------------------------" << endl;
+                            break;
                         case 0:
                             break;
                         default:
-                            cout << "OPÇÃO INVÁLIDA, INFORME UMA VÁLIDA" << endl;
+                            cout << "\tOPÇÃO INVÁLIDA, INFORME UMA VÁLIDA" << endl;
                     }
                 }while(op2 != 0);
 
                 break;
             case 4:
-                cout << endl << "---------------------------------------------" << endl;
-                cout << "\t SUFIXOS" << endl;
-                cout << "---------------------------------------------" << endl;
-                break;
-            case 5:
-                cout << endl << "---------------------------------------------" << endl;
-                cout << "\t SUBPALAVRAS" << endl;
-                cout << "---------------------------------------------" << endl;
-                break;
-            case 6:
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t LISTA DE TODOS OS ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
@@ -108,7 +107,7 @@ int main(){
                 cout << "PROGRAMA ENCERRADO COM SUCESSO!" << endl;
                 break;
             default:
-                cout << "OPÇÃO INVÁLIDA. POR FAVOR, INFORME UMA VÁLIDA" << endl;
+                cout << "\tOPÇÃO INVÁLIDA. POR FAVOR, INFORME UMA VÁLIDA" << endl;
         };
 
     }while(op != 0);
