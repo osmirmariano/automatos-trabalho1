@@ -4,8 +4,8 @@
 using namespace std;
 
 int main(){
-    int op, recebe, tamanho = 0, verifica;
-    string alfabeto, inseriAlfa;
+    int op, recebe, tamanho = 0, verifica, op2;
+    string alfabeto, inseriAlfa, alfaUnir;
     char *alfa;
 
     Alfabeto *alfabet = new Alfabeto();
@@ -54,7 +54,39 @@ int main(){
                 cout << "\t PREFIXOS" << endl;
                 cout << "---------------------------------------------" << endl;
                 cout << "INFORME UM ALFABETO: ";
-                cin << inseriAlfa;
+                cin >> inseriAlfa;
+                do{
+                    cout << endl << "   ---------------------------------------------" << endl;
+                    cout << " \t   SUBMENU" << endl;
+                    cout << "   ---------------------------------------------" << endl;
+                    cout << "   1 -- VERIFICAR SE PERTENCE AO ALFABETO" << endl;
+                    cout << "   2 -- VISUALIZAR PREFIXOS" << endl;
+                    cout << "   0 -- VALTAR PARA O MENU" << endl;
+                    cout << "   ---------------------------------------------" << endl;
+                    cout << "   OPCAO: ";
+                    cin >> op2;
+
+                    switch(op2){
+                        case 1:
+                            cout << endl << "   ---------------------------------------------" << endl;
+                            cout << "\t   VERIFICAÇÃO" << endl;
+                            cout << "   ---------------------------------------------" << endl;
+                            alfabet->verificaPercAlfa(alfabeto, inseriAlfa);
+                            cout << "   ---------------------------------------------" << endl << endl;
+                            alfabet->prefixo(alfabeto, inseriAlfa);
+                            break;
+                        case 2:
+                            cout << endl << "---------------------------------------------" << endl;
+                            cout << "\t PREFIXOS" << endl;
+                            cout << "---------------------------------------------" << endl;
+                            break;
+                        case 0:
+                            break;
+                        default:
+                            cout << "OPÇÃO INVÁLIDA, INFORME UMA VÁLIDA" << endl;
+                    }
+                }while(op2 != 0);
+
                 break;
             case 4:
                 cout << endl << "---------------------------------------------" << endl;

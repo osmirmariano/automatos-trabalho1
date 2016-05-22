@@ -13,16 +13,18 @@ class Alfabeto{
         vector<char> alfa;
         string unirAlfa;
         vector<char> alfaUnir;
+        vector<char> inseriAlfa;
 
     public:
 		Alfabeto(){
 			cont = 0;
 			flag = 1;
-            contando=0;
+            contando = 0;
             alfabetos = this->alfabetos;
             alfa = this->alfa;
             unirAlfa = this->unirAlfa;
             alfaUnir = this->alfaUnir;
+            inseriAlfa = this->inseriAlfa;
 		};
 
 		~Alfabeto();
@@ -86,7 +88,7 @@ class Alfabeto{
             alfa.clear();
 		}
 
-		/*---------------------------FUNÇÃO UNIR ALFABETO-----------------------------*/
+		/*-------------------------------FUNÇÃO UNIR ALFABETO---------------------------------*/
         void unirAlfabeto(string alfabeto){
         	flag = 0;
             int tam = unirAlfa.length();
@@ -113,8 +115,32 @@ class Alfabeto{
             cout << "}";
         }
 
+        /*---------------------------FUNÇÃO VERIFICA ALFABETO PERTENCE -------------------------*/
+        void verificaPercAlfa(string alfabeto, string inseriAlfa){
+        	int pertence = 0;
+        	int tam = unirAlfa.length();
+        	int tam2 = inseriAlfa.length();
+        	for(int x = 0; x < tam; x++){
+        		for(int y = 0; y < tam2; y++){
+        			if(unirAlfa[x] == inseriAlfa[y]){
+        				pertence++;
+        			}
+        		}
+        	}
+        	if(pertence > 1)
+        		cout << "\tO ALFABETO '" << inseriAlfa << "' PERTENCE AO ALFABETO " << endl;
+        	else
+        		cout << "\tNÃO PERTENCE AO ALFABETO" << endl;
+        };
+
+        /*---------------------------------FUNÇÃO PREFIXO---------------------------------------*/
         void prefixo(string alfabeto, string inseriAlfa){
+        	verificaPercAlfa(alfabeto, inseriAlfa);
+
+        	//cout << "&" << endl;
+        	/*while()*/
         	
+
         }
 
 };
