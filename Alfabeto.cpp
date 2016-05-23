@@ -116,35 +116,48 @@ class Alfabeto{
         }
 
         /*---------------------------FUNÇÃO VERIFICA ALFABETO PERTENCE -------------------------*/
-        void verificaPercAlfa(string alfabeto, string inseriAlfa){
+        void verificaPercAlfa(string alfabeto, string inseriPalavra){
         	int pertence = 0;
         	int tam = unirAlfa.length();
-        	int tam2 = inseriAlfa.length();
-        	for(int x = 0; x < tam; x++){
-        		for(int y = 0; y < tam2; y++){
-        			if(unirAlfa[x] == inseriAlfa[y]){
-        				pertence++;
-        			}
-        		}
-        	}
-        	if(pertence > 1){
-        		cout << "\tA PALAVRA '" << inseriAlfa << "' PERTENCE AO ALFABETO ";
-        		unirAlfabeto(alfabeto);
-        	}
+        	int tam2 = inseriPalavra.length();
+        	if(tam == 0)
+        		cout << "   \tNÃO EXISTE NENHUM ALFABETO REGISTRADO" << endl;
         	else{
-        		cout << "\tA PALAVRA '" << inseriAlfa << "' NÃO PERTENCE AO ALFABETO ";
-        		unirAlfabeto(alfabeto);
+        		for(int x = 0; x < tam; x++){
+	        		for(int y = 0; y < tam2; y++){
+	        			if(unirAlfa[x] == inseriPalavra[y]){
+	        				pertence++;
+	        			}
+	        		}
+	        	}
+	        	if(pertence > 1){
+	        		cout << "\tA PALAVRA '" << inseriPalavra << "' PERTENCE AO ALFABETO ";
+	        		unirAlfabeto(alfabeto);
+	        	}
+	        	else{
+	        		cout << "\tA PALAVRA '" << inseriPalavra << "' NÃO PERTENCE AO ALFABETO ";
+	        		unirAlfabeto(alfabeto);
+	        	}
         	}
         };
 
         /*---------------------------------FUNÇÃO PREFIXO---------------------------------------*/
-        void prefixo(string alfabeto, string inseriAlfa){
-        	verificaPercAlfa(alfabeto, inseriAlfa);
-
-        	//cout << "&" << endl;
-        	/*while()*/
+        void prefixo(string alfabeto, string inseriPalavra){
+        	string armazena;
+        	int x = 0;
+        	int tam = unirAlfa.length();
+        	int tam2 = inseriPalavra.length();
+        	if(tam == 0)
+        		cout << "   \tNÃO EXISTE NENHUM ALFABETO REGISTRADO" << endl;
+        	else{
+        		cout << "  &" << endl;
+        		cout << "   ";
+	        	while(x < tam2){
+	        		cout << inseriPalavra[x];
+	        		x++;
+        		}
+        	}
         	
-
         }
 
 };

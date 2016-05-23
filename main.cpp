@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     int op, recebe, tamanho = 0, verifica, op2;
-    string alfabeto, inseriAlfa, alfaUnir;
+    string alfabeto, inseriPalavra, alfaUnir;
     char *alfa;
 
     Alfabeto *alfabet = new Alfabeto();
@@ -51,8 +51,8 @@ int main(){
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t PREFIXOS, SUFIXOS E SUBPALAVRAS" << endl;
                 cout << "---------------------------------------------" << endl;
-                cout << "INFORME UM ALFABETO: ";
-                cin >> inseriAlfa;
+                cout << "INFORME UMA PALAVRA: ";
+                cin >> inseriPalavra;
                 do{
                     cout << endl << "   ---------------------------------------------" << endl;
                     cout << " \t   MENU SECUNDÁRIO" << endl;
@@ -71,23 +71,25 @@ int main(){
                             cout << endl << "   ---------------------------------------------" << endl;
                             cout << "\t   VERIFICAÇÃO" << endl;
                             cout << "   ---------------------------------------------" << endl;
-                            alfabet->verificaPercAlfa(alfabeto, inseriAlfa);
+                            alfabet->verificaPercAlfa(alfabeto, inseriPalavra);
                             cout << endl << "   ---------------------------------------------" << endl << endl;
                             break;
                         case 2:
-                            cout << endl << "---------------------------------------------" << endl;
-                            cout << "\t PREFIXOS" << endl;
-                            cout << "---------------------------------------------" << endl;
+                            cout << endl << "   ---------------------------------------------" << endl;
+                            cout << "\t    PREFIXOS" << endl;
+                            cout << "   ---------------------------------------------" << endl;
+                            alfabet->prefixo(alfabeto, inseriPalavra);
+                            cout << endl << "   ---------------------------------------------" << endl << endl;
                             break;
                         case 3:
-                            cout << endl << "---------------------------------------------" << endl;
-                            cout << "\t SUFIXOS" << endl;
-                            cout << "---------------------------------------------" << endl;
+                            cout << endl << "   ---------------------------------------------" << endl;
+                            cout << "\t    SUFIXOS" << endl;
+                            cout << "   ---------------------------------------------" << endl;
                             break;
                         case 4:
-                            cout << endl << "---------------------------------------------" << endl;
-                            cout << "\t SUBPALAVRAS" << endl;
-                            cout << "---------------------------------------------" << endl;
+                            cout << endl << "   ---------------------------------------------" << endl;
+                            cout << "\t    SUBPALAVRAS" << endl;
+                            cout << "   ---------------------------------------------" << endl;
                             break;
                         case 0:
                             break;
