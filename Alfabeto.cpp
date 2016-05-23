@@ -130,7 +130,7 @@ class Alfabeto{
 	        			}
 	        		}
 	        	}
-	        	if(pertence > 1){
+	        	if(pertence > 0){
 	        		cout << "\tA PALAVRA '" << inseriPalavra << "' PERTENCE AO ALFABETO ";
 	        		unirAlfabeto(alfabeto);
 	        	}
@@ -144,20 +144,55 @@ class Alfabeto{
         /*---------------------------------FUNÇÃO PREFIXO---------------------------------------*/
         void prefixo(string alfabeto, string inseriPalavra){
         	string armazena;
-        	int x = 0;
-        	int tam = unirAlfa.length();
-        	int tam2 = inseriPalavra.length();
-        	if(tam == 0)
-        		cout << "   \tNÃO EXISTE NENHUM ALFABETO REGISTRADO" << endl;
-        	else{
-        		cout << "  &" << endl;
-        		cout << "   ";
-	        	while(x < tam2){
-	        		cout << inseriPalavra[x];
-	        		x++;
-        		}
-        	}
-        	
+        	int x = 0, cont = 0;
+        	int tam = inseriPalavra.length();
+            cout << "   \t&" << endl;
+            while(x < tam){
+                armazena += inseriPalavra[x];
+                cout << "   \t" << armazena << endl;
+                x++;
+                cont++;
+            }
+            cout << endl << "\tTOTAL: " << cont+1;
         }
+
+        /*---------------------------------FUNÇÃO SUFIXO---------------------------------------*/
+        void sufixo(string alfabeto, string inseriPalavra){
+        	string armazena;
+        	int tam = inseriPalavra.length();
+        	int x = tam,cont = 0;
+            cout << "   \t&" << endl;
+            while(x != 0){
+                if(x != tam)
+                    armazena = inseriPalavra[x-1] + armazena;
+                else
+                    armazena += inseriPalavra[x-1];
+                cout << "   \t" << armazena << endl;
+                x--;
+                cont++;
+            }
+            cout << endl << "   \tTOTAL: " << cont+1;
+        }
+
+        /*---------------------------------FUNÇÃO SUBPALAVRA-----------------------------------*/
+        void subpalavra(string alfabeto, string inseriPalavra){
+        	string armazena;
+        	int tam = inseriPalavra.length();
+        	int x = 0, flag = 0;
+            cout << "   &" << endl;
+
+            for(int x = 0; x < tam; x++){
+                for(int y = x; y < tam+1; y++){
+                    armazena += inseriPalavra[y];
+                    cout << "   " << armazena << endl;
+                    flag++;
+                    if(flag == tam){
+                        y = flag;
+                        armazena = "";
+                        flag = 0;
+                    }
+                }
+            }
+        };
 
 };

@@ -51,7 +51,7 @@ int main(){
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t PREFIXOS, SUFIXOS E SUBPALAVRAS" << endl;
                 cout << "---------------------------------------------" << endl;
-                cout << "INFORME UMA PALAVRA: ";
+                cout << "   INFORME UMA PALAVRA: ";
                 cin >> inseriPalavra;
                 do{
                     cout << endl << "   ---------------------------------------------" << endl;
@@ -61,7 +61,7 @@ int main(){
                     cout << "   2 -- VISUALIZAR PREFIXOS" << endl;
                     cout << "   3 -- VISUALIZAR SUFIXOS" << endl;
                     cout << "   4 -- VISUALIZAR SUBPALAVRAS" << endl;
-                    cout << "   0 -- VALTAR PARA O MENU PRINCIPAL" << endl;
+                    cout << "   0 -- VOLTAR PARA O MENU PRINCIPAL" << endl;
                     cout << "   ---------------------------------------------" << endl;
                     cout << "   OPCAO: ";
                     cin >> op2;
@@ -85,11 +85,14 @@ int main(){
                             cout << endl << "   ---------------------------------------------" << endl;
                             cout << "\t    SUFIXOS" << endl;
                             cout << "   ---------------------------------------------" << endl;
+                            alfabet->sufixo(alfabeto, inseriPalavra);
+                            cout << endl << "   ---------------------------------------------" << endl << endl;
                             break;
                         case 4:
                             cout << endl << "   ---------------------------------------------" << endl;
                             cout << "\t    SUBPALAVRAS" << endl;
                             cout << "   ---------------------------------------------" << endl;
+                            alfabet->subpalavra(alfabeto, inseriPalavra);
                             break;
                         case 0:
                             break;
