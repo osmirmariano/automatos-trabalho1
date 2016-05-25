@@ -7,11 +7,13 @@ using namespace std;
 int main(){
     int op, recebe, tamanho = 0, verifica, op2, t = 0;
     string alfabeto, inseriPalavra, alfaUnir;
-    char *alfa;
+    //char *alfa;
+    vector<char> alfa;
+    vector<string> alfabetos;
 
     Alfabeto *alfabet = new Alfabeto();
     do{
-        cout << endl << "------------------------------------- V. 0.95 ";
+        cout << endl << "----------------- V. 1.0.0 ------------------";
         cout << endl << "---------------------------------------------" << endl;
         cout << "\t MENU PRINCIPAL" << endl;
         cout << "---------------------------------------------" << endl;
@@ -33,11 +35,7 @@ int main(){
                 cin.ignore();//Limpando o Buffer
                 cout << "INFORME UM ALFABETO: ";
                 getline(cin, alfabeto);
-                for(int y = 0; y < alfabeto.length(); y++){
-                    cout << alfabeto[y] << endl;
-                    tamanho++;
-                }
-                cout << "TAMANHO: " << tamanho << endl;
+                tamanho = alfabeto.length();
 
                 if(alfabeto[0] != '{' || alfabeto[tamanho-1] != '}'){
                     cout << endl << "\t ALFABETO INFORMADO NAO ACEITO." << endl;
@@ -114,7 +112,7 @@ int main(){
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t LISTA DE TODOS OS ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
-                alfabet->imprimeAlfabetos();
+                alfabet->imprimeAlfabetos(alfabeto, tamanho);
                 break;
             case 0:
                 cout << "PROGRAMA ENCERRADO COM SUCESSO!" << endl;

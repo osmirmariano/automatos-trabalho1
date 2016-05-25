@@ -11,7 +11,7 @@ class Alfabeto{
 		int cont, flag, recebe, contando;
 		vector<string> alfabetos;
         vector<char> alfa;
-        string unirAlfa;
+        string unirAlfa, alfabetor;
         vector<char> alfaUnir;
         vector<char> inseriAlfa;
         vector<string> subpalavras;
@@ -37,12 +37,11 @@ class Alfabeto{
 			for(int x = 0; x < tamanho; x++){
 			    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
                     if (isalnum (alfabeto[x])){
-
 			            alfa.push_back(alfabeto[x]);
 			            cont++;
-			        }else{
+			        }
+			        else{
 			            recebe = 1;
-			            //cout << " Elementos alfanuméricos inválidos: " << alfabeto[x] << endl;
 			        }
 			    }
 			}
@@ -65,7 +64,6 @@ class Alfabeto{
 			    for(int y = x+1; y < cont; y++){
 				   	if(alfa[x] == alfa[y]){
 				   		recebe = 1;
-				   		cout << " Alfabeto com elementos repetidos" << endl;
 				   		break;
 				   	}
 				}
@@ -75,20 +73,23 @@ class Alfabeto{
 			}
 			else{
 				cout << endl << "\tALFABETO INFORMADO ACEITO - ";
-		        cout << "" << alfabeto << endl;
+		        function(alfabeto, tamanho);
+		        cout << endl;
 		        guardaAlfabeto(alfabeto,tamanho);
 			}
 			recebe = 0;
 			destrutor();
-            cont=0;
+            cont = 0;
 		};
 
 		/*-----------------------FUNÇÃO IMPRIMIR TODOS ALFABETOS VÁLIDOS-----------------------*/
-		void imprimeAlfabetos(){
+		void imprimeAlfabetos(string alfabeto, int tamanho){
 			for(int x = 0; x < contando; x++){
-                cout << x+1 << " -" << " " << alfabetos[x] << endl;
-            }
-		}
+                cout << x+1 << " - ";
+                function(alfabeto, tamanho);
+                cout << endl;
+            }  
+		};
 
 		/*---------------------------FUNÇÃO DESTRUTOR DE ALFABETO-----------------------------*/
 		void destrutor(){
@@ -100,6 +101,7 @@ class Alfabeto{
         	flag = 0;
             int tam = unirAlfa.length();
             int cont = 1;
+
             cout << "{";
             for(int x = 0; x < tam; x++){
             	for(int y = x+1; y < tam; y++){
@@ -247,18 +249,34 @@ class Alfabeto{
             }
         };
 
-	        /*int tam (){
-	        	string alfabeto;
-	        	int tamanho=0;
-	        	cout << "INFORME UM ALFABETO: ";
-	            cin >> alfabeto;
-	        	//tamanho = alfabeto.length();
+        //Função para mostrar bonitinho
+        void function(string alfabeto, int tamanho){
+        	int cont = 0;
+                for(int x = 0; x < tamanho; x++){
+                    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
+                        if (isalnum (alfabeto[x])){
+                            alfa.push_back(alfabeto[x]);
+                            cont++;
+                        }
+                    }
+                }
 
-				for(int y = 0; y < 10; y++){
-	                    cout << alfabeto[y] << endl;
-	                    tamanho++;
-	                }
-	                cout << "TAMANHO: " << tamanho << endl;
-	           	return tamanho;
-	        }*/
+                alfabetos.push_back(alfabeto);
+                for(int x = 0; x < tamanho; x++){
+                    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
+                        alfabetor += alfabeto[x];
+                    }
+                }
+                
+                cout << "{";
+                int flag = 0;
+                for (int x = 0; x < cont; x++){
+                    cout << alfabetor[x];
+                    if(flag < cont-1){
+                        cout << ",";
+                        flag++;
+                    }
+                }
+                cout << "}";	
+        }
 };
