@@ -14,6 +14,8 @@ class Alfabeto{
         string unirAlfa;
         vector<char> alfaUnir;
         vector<char> inseriAlfa;
+        vector<string> subpalavras;
+
 
     public:
 		Alfabeto(){
@@ -25,17 +27,22 @@ class Alfabeto{
             unirAlfa = this->unirAlfa;
             alfaUnir = this->alfaUnir;
             inseriAlfa = this->inseriAlfa;
+            subpalavras = this->subpalavras;
 		};
 
 		~Alfabeto();
 
 		/*---------------------------FUNÇÃO VERIFICA ALFABETO------------------------------*/
-		void verifAlfabeto(string alfabeto, int tamanho){ //pega cada elemento da string alfabeto e coloca em um vetor
+		void verifAlfabetoAlfanumerico(string alfabeto, int tamanho){ //pega cada elemento da string alfabeto e coloca em um vetor
 			for(int x = 0; x < tamanho; x++){
-			    if(alfabeto[x] != '{' || alfabeto[x] != '}' || alfabeto[x] != ',' || alfabeto[x] != ' '){
-			        if (isalnum (alfabeto[x])){
+			    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
+                    if (isalnum (alfabeto[x])){
+
 			            alfa.push_back(alfabeto[x]);
-			            cont++; //Quantidade de elementos válidos alfanuméricos
+			            cont++;
+			        }else{
+			            recebe = 1;
+			            //cout << " Elementos alfanuméricos inválidos: " << alfabeto[x] << endl;
 			        }
 			    }
 			}
@@ -58,13 +65,13 @@ class Alfabeto{
 			    for(int y = x+1; y < cont; y++){
 				   	if(alfa[x] == alfa[y]){
 				   		recebe = 1;
+				   		cout << " Alfabeto com elementos repetidos" << endl;
 				   		break;
 				   	}
 				}
 			}
 			if(recebe == 1){
 				cout << endl << "ALFABETO INFORMADO NÃO ACEITO!" << endl;
-                cout << "NÃO É PERMITIDO ALFABETO COM REPETIÇÕES." << endl;
 			}
 			else{
 				cout << endl << "\tALFABETO INFORMADO ACEITO - ";
@@ -178,21 +185,80 @@ class Alfabeto{
         void subpalavra(string alfabeto, string inseriPalavra){
         	string armazena;
         	int tam = inseriPalavra.length();
-        	int x = 0, flag = 0;
+        	int x = 0, flag = 0, cont = 0, tam2 = 0;
             cout << "   &" << endl;
 
             for(int x = 0; x < tam; x++){
-                for(int y = x; y < tam+1; y++){
+                for(int y = cont; y < tam; y++){
                     armazena += inseriPalavra[y];
+                    subpalavras.push_back(armazena);
                     cout << "   " << armazena << endl;
                     flag++;
-                    if(flag == tam){
-                        y = flag;
-                        armazena = "";
+                    if(flag == tam-x){
+                        //y = tam;
+                        armazena = ""; //cout << "n" << flag << tam-x << endl;
                         flag = 0;
+                        cont++;
+                        break;
                     }
                 }
             }
+
+            tam2 = subpalavras.size();
+            cout << tam2 << endl;
+
+            for(int x = 0; x < tam2; x++){ // ELIMINAR SUBPALAVRAS REPETIDAS
+                for(int y = x+1; y < tam2; y++){
+                    if(subpalavras[x] == subpalavras[y]){
+                        cout << subpalavras[x] << " igual " << subpalavras[y] << endl;
+                        if(y+1 != tam2){
+                            while(y <= tam2){
+                                //cout << "   foi "<< y << tam2 << endl;
+                                subpalavras[y] = subpalavras[y+1];
+                                y++;
+                            }
+                        }
+                        tam2--;
+                    }
+
+                }
+            }
+
+            cout << "\n   IMPRIMI "<< endl;
+            for(int x = 0; x < tam2; x++){
+                cout << "   " << subpalavras[x] << endl;
+            }
+
+            int n=0,m=0;
+            string aux;
+            for(int i = 0; i < tam2; i++){ //ORDENAR
+                for(int j = i+1; j < tam2; j++){
+                    if((n = subpalavras[i].size()) > (m = subpalavras[j].size())){
+                        aux = subpalavras[i];
+                        subpalavras[i] = subpalavras[j];
+                        subpalavras[j] = aux;
+                    }
+                }
+            }
+
+            cout << "\n   ORDENADO "<< endl;
+            for(int x = 0; x < tam2; x++){
+                cout << "   " << subpalavras[x] << endl;
+            }
         };
 
+	        /*int tam (){
+	        	string alfabeto;
+	        	int tamanho=0;
+	        	cout << "INFORME UM ALFABETO: ";
+	            cin >> alfabeto;
+	        	//tamanho = alfabeto.length();
+
+				for(int y = 0; y < 10; y++){
+	                    cout << alfabeto[y] << endl;
+	                    tamanho++;
+	                }
+	                cout << "TAMANHO: " << tamanho << endl;
+	           	return tamanho;
+	        }*/
 };

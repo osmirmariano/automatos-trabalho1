@@ -1,17 +1,19 @@
 #include <iostream>
+#include <istream>
 #include "Alfabeto.cpp"
 
 using namespace std;
 
 int main(){
-    int op, recebe, tamanho = 0, verifica, op2;
+    int op, recebe, tamanho = 0, verifica, op2, t = 0;
     string alfabeto, inseriPalavra, alfaUnir;
     char *alfa;
 
     Alfabeto *alfabet = new Alfabeto();
     do{
+        cout << endl << "------------------------------------- V. 0.95 ";
         cout << endl << "---------------------------------------------" << endl;
-        cout << "\t PRINCIPAL MENU" << endl;
+        cout << "\t MENU PRINCIPAL" << endl;
         cout << "---------------------------------------------" << endl;
         cout << " 1 -- INSERIR ALFABETO" << endl;
         cout << " 2 -- UNIAO DOS ALFABETOS" << endl;
@@ -24,33 +26,39 @@ int main(){
         cout << "---------------------------------------------" << endl << endl;
 
         switch(op){
-            case 1:
+            case 1:{
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t INSERCAO DE ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
+                cin.ignore();//Limpando o Buffer
                 cout << "INFORME UM ALFABETO: ";
-                cin >> alfabeto;
-                tamanho = alfabeto.length();
+                getline(cin, alfabeto);
+                for(int y = 0; y < alfabeto.length(); y++){
+                    cout << alfabeto[y] << endl;
+                    tamanho++;
+                }
+                cout << "TAMANHO: " << tamanho << endl;
 
                 if(alfabeto[0] != '{' || alfabeto[tamanho-1] != '}'){
                     cout << endl << "\t ALFABETO INFORMADO NAO ACEITO." << endl;
                     cout << "POR FAVOR, INFORME UM VALIDO DE ACORDO COM A TEORIA DE CONJUNTOS." << endl;
                 }
                 else{
-                    alfabet->verifAlfabeto(alfabeto, tamanho);
+                    alfabet->verifAlfabetoAlfanumerico(alfabeto, tamanho);
                     alfabet->verifAlfabetoRepetido(alfabeto, tamanho);
                 }
                 break;
+            }
             case 2:
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t UNIAO DOS ALFABETOS" << endl;
                 cout << "---------------------------------------------" << endl;
                 alfabet->unirAlfabeto(alfabeto);
                 break;
-            case 3:
+            case 3:                
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t PREFIXOS, SUFIXOS E SUBPALAVRAS" << endl;
-                cout << "---------------------------------------------" << endl;
+                cout << "---------------------------------------------" << endl;          
                 cout << "   INFORME UMA PALAVRA: ";
                 cin >> inseriPalavra;
                 do{
@@ -117,4 +125,5 @@ int main(){
 
     }while(op != 0);
     return 0;
-}
+};
+
