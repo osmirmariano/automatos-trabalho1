@@ -5,15 +5,15 @@
 using namespace std;
 
 int main(){
-    int op, recebe, tamanho = 0, verifica, op2, t = 0;
+    int op, recebe, tamanho = 0, verifica, op2, t = 0, aceito = 0, cont = 0, result = 0;
     string alfabeto, inseriPalavra, alfaUnir;
     //char *alfa;
     vector<char> alfa;
     vector<string> alfabetos;
 
+    cout << endl << "----------------- V. 1.0.0 ------------------  " << endl;
     Alfabeto *alfabet = new Alfabeto();
     do{
-        cout << endl << "----------------- V. 1.0.0 ------------------";
         cout << endl << "---------------------------------------------" << endl;
         cout << "\t MENU PRINCIPAL" << endl;
         cout << "---------------------------------------------" << endl;
@@ -37,14 +37,34 @@ int main(){
                 getline(cin, alfabeto);
                 tamanho = alfabeto.length();
 
-                if(alfabeto[0] != '{' || alfabeto[tamanho-1] != '}'){
-                    cout << endl << "\t ALFABETO INFORMADO NAO ACEITO." << endl;
-                    cout << "POR FAVOR, INFORME UM VALIDO DE ACORDO COM A TEORIA DE CONJUNTOS." << endl;
+                for(int x = 0; x < tamanho-1; x++){
+                    if(alfabeto[x] == ' '){
+                        cont++;
+                        int y = x;
+                        while(y < tamanho-1){
+                            alfabeto[y] = alfabeto[y+1];
+                            y++;
+                        }
+                    }   
+                }
+                result = tamanho-cont;
+
+                for(int x = 1; x < result-1; x++){
+                    if(alfabeto[0] != '{' || alfabeto[result-1] != '}' || alfabeto[x] == ',' || alfabeto[x+1] != ',' || alfabeto[result-2] == ','){
+                        aceito++;
+                    }
+                    x++;
+                }
+
+                if(aceito > 0){
+                    alfabet->verifAlfabetoAlfanumerico(alfabeto, result);
+                    alfabet->verifAlfabetoRepetido(alfabeto, result);
                 }
                 else{
-                    alfabet->verifAlfabetoAlfanumerico(alfabeto, tamanho);
-                    alfabet->verifAlfabetoRepetido(alfabeto, tamanho);
+                    cout << endl << "\t ALFABETO INFORMADO NÃO ACEITO." << endl;
                 }
+                aceito = 0;
+                cont = 0;
                 break;
             }
             case 2:

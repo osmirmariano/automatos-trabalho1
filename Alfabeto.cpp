@@ -27,7 +27,7 @@ class Alfabeto{
             unirAlfa = this->unirAlfa;
             alfaUnir = this->alfaUnir;
             inseriAlfa = this->inseriAlfa;
-            subpalavras = this->subpalavras;
+            subpalavras = this->subpalavras;;
 		};
 
 		~Alfabeto();
@@ -76,19 +76,10 @@ class Alfabeto{
 		        function(alfabeto, tamanho);
 		        cout << endl;
 		        guardaAlfabeto(alfabeto,tamanho);
-			}
+		    }
 			recebe = 0;
 			destrutor();
             cont = 0;
-		};
-
-		/*-----------------------FUNÇÃO IMPRIMIR TODOS ALFABETOS VÁLIDOS-----------------------*/
-		void imprimeAlfabetos(string alfabeto, int tamanho){
-			for(int x = 0; x < contando; x++){
-                cout << x+1 << " - ";
-                function(alfabeto, tamanho);
-                cout << endl;
-            }  
 		};
 
 		/*---------------------------FUNÇÃO DESTRUTOR DE ALFABETO-----------------------------*/
@@ -188,34 +179,27 @@ class Alfabeto{
         	string armazena;
         	int tam = inseriPalavra.length();
         	int x = 0, flag = 0, cont = 0, tam2 = 0;
-            cout << "   &" << endl;
+            cout << "   \t&" << endl;
 
             for(int x = 0; x < tam; x++){
                 for(int y = cont; y < tam; y++){
                     armazena += inseriPalavra[y];
                     subpalavras.push_back(armazena);
-                    cout << "   " << armazena << endl;
                     flag++;
                     if(flag == tam-x){
-                        //y = tam;
-                        armazena = ""; //cout << "n" << flag << tam-x << endl;
+                        armazena = ""; 
                         flag = 0;
                         cont++;
                         break;
                     }
                 }
             }
-
             tam2 = subpalavras.size();
-            cout << tam2 << endl;
-
             for(int x = 0; x < tam2; x++){ // ELIMINAR SUBPALAVRAS REPETIDAS
                 for(int y = x+1; y < tam2; y++){
                     if(subpalavras[x] == subpalavras[y]){
-                        cout << subpalavras[x] << " igual " << subpalavras[y] << endl;
                         if(y+1 != tam2){
                             while(y <= tam2){
-                                //cout << "   foi "<< y << tam2 << endl;
                                 subpalavras[y] = subpalavras[y+1];
                                 y++;
                             }
@@ -225,12 +209,6 @@ class Alfabeto{
 
                 }
             }
-
-            cout << "\n   IMPRIMI "<< endl;
-            for(int x = 0; x < tam2; x++){
-                cout << "   " << subpalavras[x] << endl;
-            }
-
             int n=0,m=0;
             string aux;
             for(int i = 0; i < tam2; i++){ //ORDENAR
@@ -243,40 +221,37 @@ class Alfabeto{
                 }
             }
 
-            cout << "\n   ORDENADO "<< endl;
             for(int x = 0; x < tam2; x++){
-                cout << "   " << subpalavras[x] << endl;
+                cout << "   \t" << subpalavras[x] << endl;
             }
+            cout << endl << " \tTOTAL: " << tam2+1;
         };
 
-        //Função para mostrar bonitinho
+        /*----------------------------FUNÇÃO PARA PRINTAR SEM ESPAÇOS------------------------------*/
         void function(string alfabeto, int tamanho){
-        	int cont = 0;
-                for(int x = 0; x < tamanho; x++){
-                    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
-                        if (isalnum (alfabeto[x])){
-                            alfa.push_back(alfabeto[x]);
-                            cont++;
-                        }
+        	int cont = 0, result = 0;                    
+            for(int x = 0; x < tamanho-1; x++){
+                if(alfabeto[x] == ' '){
+                	cont++;
+                    int y = x;
+                    while(y < tamanho-1){
+                    	alfabeto[y] = alfabeto[y+1];
+                        y++;
                     }
-                }
+                }   
+            }
+            result = tamanho-cont;
+            for(int x = 0; x < result; x++){
+            	cout << alfabeto[x];
+            }
+   		};
 
-                alfabetos.push_back(alfabeto);
-                for(int x = 0; x < tamanho; x++){
-                    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
-                        alfabetor += alfabeto[x];
-                    }
-                }
-                
-                cout << "{";
-                int flag = 0;
-                for (int x = 0; x < cont; x++){
-                    cout << alfabetor[x];
-                    if(flag < cont-1){
-                        cout << ",";
-                        flag++;
-                    }
-                }
-                cout << "}";	
-        }
+	    /*-----------------------FUNÇÃO IMPRIMIR TODOS ALFABETOS VÁLIDOS-----------------------*/
+		void imprimeAlfabetos(string alfabeto, int tamanho){
+			for(int x = 0; x < contando; x++){
+                cout << x+1 << " -" << " " << alfabetos[x] << endl;
+            }
+			
+		};
+
 };
