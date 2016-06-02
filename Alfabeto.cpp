@@ -33,8 +33,8 @@ class Alfabeto{
 		~Alfabeto();
 
 		/*---------------------------FUNÇÃO VERIFICA ALFABETO------------------------------*/
-		void verifAlfabetoAlfanumerico(string alfabeto, int tamanho){ //pega cada elemento da string alfabeto e coloca em um vetor
-			for(int x = 0; x < tamanho; x++){
+		void verifAlfabetoAlfanumerico(string alfabeto, int result){ //pega cada elemento da string alfabeto e coloca em um vetor
+			for(int x = 0; x < result; x++){
 			    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
                     if (isalnum (alfabeto[x])){
 			            alfa.push_back(alfabeto[x]);
@@ -48,10 +48,10 @@ class Alfabeto{
 		};
 
 		/*-----------------------------FUNÇÃO GUARDA ALFABETO------------------------------*/
-		void guardaAlfabeto(string alfabeto, int tamanho){
+		void guardaAlfabeto(string alfabeto, int result){
             alfabetos.push_back(alfabeto);
             contando++;
-            for(int x = 0; x < tamanho; x++){
+            for(int x = 0; x < result; x++){
 			    if(alfabeto[x] != '{' && alfabeto[x] != '}' && alfabeto[x] != ',' && alfabeto[x] != ' '){
                     unirAlfa += alfabeto[x];
 			    }
@@ -59,7 +59,7 @@ class Alfabeto{
         };
 
 		/*----------------------FUNÇÃO VERIFICA ALFABETO REPETIDOS-------------------------*/
-		void verifAlfabetoRepetido (string alfabeto, int tamanho){ // verifica repetições de elementos no alfabeto
+		void verifAlfabetoRepetido (string alfabeto, int result){ // verifica repetições de elementos no alfabeto
 			for(int x = 0; x < cont; x++){
 			    for(int y = x+1; y < cont; y++){
 				   	if(alfa[x] == alfa[y]){
@@ -69,13 +69,13 @@ class Alfabeto{
 				}
 			}
 			if(recebe == 1){
-				cout << endl << "ALFABETO INFORMADO NÃO ACEITO!" << endl;
+				cout << endl << "\tALFABETO INFORMADO NÃO ACEITO!" << endl;
 			}
 			else{
 				cout << endl << "\tALFABETO INFORMADO ACEITO - ";
-		        function(alfabeto, tamanho);
+		        function(alfabeto, result);
 		        cout << endl;
-		        guardaAlfabeto(alfabeto,tamanho);
+		        guardaAlfabeto(alfabeto, result);
 		    }
 			recebe = 0;
 			destrutor();
@@ -91,23 +91,24 @@ class Alfabeto{
         void unirAlfabeto(string alfabeto){
         	flag = 0;
             int tam = unirAlfa.length();
-            int cont = 1;
-
-            cout << "{";
             for(int x = 0; x < tam; x++){
-            	for(int y = x+1; y < tam; y++){
+                for(int y = x+1; y < tam; y++){
             		if(unirAlfa[x] == unirAlfa[y]){
             			while(y <= tam){
             				unirAlfa[y] = unirAlfa[y+1];
             				y++;
             			}
-            			cont++;
+            			x--;
+            			tam--;
             		}
 
             	}
-            	int virgula = tam-cont;
+            }
+
+            cout << "{";
+            for(int x = 0; x < tam; x++){
             	cout << unirAlfa[x];
-            	if(flag < virgula){
+            	if(flag < tam-1){
             		cout << ",";
             		flag++;
             	}
@@ -116,26 +117,26 @@ class Alfabeto{
         }
 
         /*---------------------------FUNÇÃO VERIFICA ALFABETO PERTENCE -------------------------*/
-        void verificaPercAlfa(string alfabeto, string inseriPalavra){
+        void verificaPercAlfa(string alfabeto, string palavra){
         	int pertence = 0;
         	int tam = unirAlfa.length();
-        	int tam2 = inseriPalavra.length();
+        	int tam2 = palavra.length();
         	if(tam == 0)
         		cout << "   \tNÃO EXISTE NENHUM ALFABETO REGISTRADO" << endl;
         	else{
         		for(int x = 0; x < tam; x++){
 	        		for(int y = 0; y < tam2; y++){
-	        			if(unirAlfa[x] == inseriPalavra[y]){
+	        			if(unirAlfa[x] == palavra[y]){
 	        				pertence++;
 	        			}
 	        		}
 	        	}
-	        	if(pertence > 0){
-	        		cout << "\tA PALAVRA '" << inseriPalavra << "' PERTENCE AO ALFABETO ";
+	        	if(pertence == tam){
+	        		cout << "\tA PALAVRA '" << palavra << "' PERTENCE AO ALFABETO ";
 	        		unirAlfabeto(alfabeto);
 	        	}
 	        	else{
-	        		cout << "\tA PALAVRA '" << inseriPalavra << "' NÃO PERTENCE AO ALFABETO ";
+	        		cout << "\tA PALAVRA '" << palavra << "' NÃO PERTENCE AO ALFABETO ";
 	        		unirAlfabeto(alfabeto);
 	        	}
         	}
@@ -187,7 +188,7 @@ class Alfabeto{
                     subpalavras.push_back(armazena);
                     flag++;
                     if(flag == tam-x){
-                        armazena = ""; 
+                        armazena = "";
                         flag = 0;
                         cont++;
                         break;
@@ -209,7 +210,7 @@ class Alfabeto{
 
                 }
             }
-            int n=0,m=0;
+            int n = 0, m = 0;
             string aux;
             for(int i = 0; i < tam2; i++){ //ORDENAR
                 for(int j = i+1; j < tam2; j++){
@@ -228,30 +229,30 @@ class Alfabeto{
         };
 
         /*----------------------------FUNÇÃO PARA PRINTAR SEM ESPAÇOS------------------------------*/
-        void function(string alfabeto, int tamanho){
-        	int cont = 0, result = 0;                    
-            for(int x = 0; x < tamanho-1; x++){
+        void function(string alfabeto, int result){
+        	int cont = 0;/**/
+            for(int x = 0; x < result-1; x++){
                 if(alfabeto[x] == ' '){
                 	cont++;
                     int y = x;
-                    while(y < tamanho-1){
+                    while(y < result-1){
                     	alfabeto[y] = alfabeto[y+1];
                         y++;
                     }
-                }   
+                }
             }
-            result = tamanho-cont;
+
             for(int x = 0; x < result; x++){
             	cout << alfabeto[x];
             }
    		};
 
 	    /*-----------------------FUNÇÃO IMPRIMIR TODOS ALFABETOS VÁLIDOS-----------------------*/
-		void imprimeAlfabetos(string alfabeto, int tamanho){
+		void imprimeAlfabetos(string alfabeto, int result){
 			for(int x = 0; x < contando; x++){
                 cout << x+1 << " -" << " " << alfabetos[x] << endl;
             }
-			
+
 		};
 
 };

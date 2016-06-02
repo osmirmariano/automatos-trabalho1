@@ -6,13 +6,13 @@ using namespace std;
 
 int main(){
     int op, recebe, tamanho = 0, verifica, op2, t = 0, aceito = 0, cont = 0, result = 0;
-    string alfabeto, inseriPalavra, alfaUnir;
-    //char *alfa;
+    string alfabeto, inseriPalavra, alfaUnir, auxiliar;
     vector<char> alfa;
     vector<string> alfabetos;
 
     cout << endl << "----------------- V. 1.0.0 ------------------  " << endl;
     Alfabeto *alfabet = new Alfabeto();
+
     do{
         cout << endl << "---------------------------------------------" << endl;
         cout << "\t MENU PRINCIPAL" << endl;
@@ -26,6 +26,7 @@ int main(){
         cout << "OPCAO: ";
         cin >> op;
         cout << "---------------------------------------------" << endl << endl;
+        //system("cls");
 
         switch(op){
             case 1:{
@@ -37,26 +38,36 @@ int main(){
                 getline(cin, alfabeto);
                 tamanho = alfabeto.length();
 
-                for(int x = 0; x < tamanho-1; x++){
-                    if(alfabeto[x] == ' '){
+                for(int x = 0; x < tamanho; x++){
+                    if(alfabeto[x] != ' '){
+                        auxiliar += alfabeto[x];
+                    }else{
                         cont++;
-                        int y = x;
-                        while(y < tamanho-1){
-                            alfabeto[y] = alfabeto[y+1];
-                            y++;
-                        }
-                    }   
+                    }
                 }
                 result = tamanho-cont;
+                alfabeto = auxiliar;
+                cont=0;
+                auxiliar = "";
 
-                for(int x = 1; x < result-1; x++){
-                    if(alfabeto[0] != '{' || alfabeto[result-1] != '}' || alfabeto[x] == ',' || alfabeto[x+1] != ',' || alfabeto[result-2] == ','){
+                if(result > 3 ){
+                    for(int x = 1; x < result-2; x++){
+                        if(alfabeto[0] != '{' || alfabeto[result-1] != '}' || alfabeto[x] == ',' || alfabeto[x+1] != ',' || alfabeto[result-2] == ','){
+                            aceito++;
+                        }
+                        x++;
+                    }
+                }else{
+                    if(result == 3){
+                        if (!isalnum (alfabeto[1])){
+                            aceito++;
+                        }
+                    }else{
                         aceito++;
                     }
-                    x++;
                 }
 
-                if(aceito > 0){
+                if(aceito == 0){
                     alfabet->verifAlfabetoAlfanumerico(alfabeto, result);
                     alfabet->verifAlfabetoRepetido(alfabeto, result);
                 }
@@ -73,14 +84,14 @@ int main(){
                 cout << "---------------------------------------------" << endl;
                 alfabet->unirAlfabeto(alfabeto);
                 break;
-            case 3:                
+            case 3:
                 cout << endl << "---------------------------------------------" << endl;
                 cout << "\t PREFIXOS, SUFIXOS E SUBPALAVRAS" << endl;
-                cout << "---------------------------------------------" << endl;          
+                cout << "---------------------------------------------" << endl;
                 cout << "   INFORME UMA PALAVRA: ";
                 cin >> inseriPalavra;
                 do{
-                    cout << endl << "   ---------------------------------------------" << endl;
+                    cout << endl << endl << endl << "   ---------------------------------------------" << endl;
                     cout << " \t   MENU SECUNDÁRIO" << endl;
                     cout << "   ---------------------------------------------" << endl;
                     cout << "   1 -- VERIFICAR SE PERTENCE AO ALFABETO" << endl;
@@ -91,6 +102,7 @@ int main(){
                     cout << "   ---------------------------------------------" << endl;
                     cout << "   OPCAO: ";
                     cin >> op2;
+                    //system("cls");
 
                     switch(op2){
                         case 1:
@@ -144,4 +156,3 @@ int main(){
     }while(op != 0);
     return 0;
 };
-
