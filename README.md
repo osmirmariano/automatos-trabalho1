@@ -1,5 +1,6 @@
 # teoriaComputacaoAutomatos-TR1
 Implementar computacionalmente, um programa que seja capaz de:
+
 a) Aceitar, como entrada fornecida pelo usuário, alfabetos formatados segundo formalismo da teoria de conjuntos, isto é, cada 
 símbolo deve ser separado por uma vírgula e devem estar dentro de chaves. Os símbolos aceitos pelo programa devem ser somente letras e
 dígitos numéricos. Não é permitido símbolos repetidos no alfabeto. Espaços devem permitidos como entrada, mas devem ser ignorados, ou
